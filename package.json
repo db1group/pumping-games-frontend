@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "keycloak-js": "^25.0.2",
+    "pinia": "^2.2.0",
     "sass": "^1.77.4",
     "vue": "^3.4.21",
     "vue-router": "4",
