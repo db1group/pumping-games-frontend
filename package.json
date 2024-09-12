@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^22.5.4",
+    "axios": "^1.7.7",
     "keycloak-js": "^25.0.2",
     "pinia": "^2.2.0",
     "sass": "^1.77.4",

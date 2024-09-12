@@ -1,9 +1,14 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 
 import HomeView from '../modules/home/home.component.vue';
-import RouterModule from '../modules/league/route';
+import LeagueModule from '../modules/league/route';
+import NationEventModule from '../modules/nation-event/route';
 
-const routes = [{ path: '/', component: HomeView }, ...RouterModule];
+const routes: readonly RouteRecordRaw[] = [
+  { path: '/', component: HomeView },
+  ...LeagueModule,
+  ...NationEventModule,
+];
 
 export const router = createRouter({
   history: createWebHistory(),
