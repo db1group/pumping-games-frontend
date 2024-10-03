@@ -10,12 +10,17 @@ export class NationEventService {
     );
   }
 
-  createNationEvent(data: any) {
-    return this.httpClient.post('/nation-events', data);
+  createNationEvent(nationEvent: NationEvent) {
+    console.log('Deve chamar o serviço de criação');
+    return this.httpClient.post('/nation-events', nationEvent.format());
   }
 
-  updateNationEvent(data: any) {
-    return this.httpClient.put(`/nation-events/${data.id}`, data);
+  updateNationEvent(nationEvent: NationEvent) {
+    console.log('Deve chamar o serviço de atualização');
+    return this.httpClient.put(
+      `/nation-events/${nationEvent.id}`,
+      nationEvent.format()
+    );
   }
 
   deleteNationEvent(id: string) {

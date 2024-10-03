@@ -11,11 +11,11 @@ const routers: readonly RouteRecordRaw[] = [
       },
       {
         name: 'create-nation-event',
-        path: 'cadastrar',
+        path: 'create',
         component: () => import('./form/nation-event-form.component.vue'),
       },
       {
-        path: 'editar/:id',
+        path: ':id',
         component: () => import('./form/nation-event-form.component.vue'),
       },
     ],

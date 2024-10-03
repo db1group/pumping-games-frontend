@@ -6,7 +6,7 @@ export class AxiosAdapter implements HttpClient {
 
   constructor() {
     this.http = axios.create({
-      baseURL: import.meta.env.VITE_BACKEND_URL,
+      baseURL: import.meta.env.VITE_BACKEND_PROXY,
     });
   }
 

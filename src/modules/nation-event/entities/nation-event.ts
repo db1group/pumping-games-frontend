@@ -15,12 +15,12 @@ export class NationEvent {
     this.season = data.season;
   }
 
-  create() {
-    console.log(this, 'vai salvar isso no backend');
-  }
-
-  update() {
-    // Update the nation event
+  format() {
+    return {
+      id: this.id,
+      name: this.name,
+      season: this.season,
+    };
   }
 }
 

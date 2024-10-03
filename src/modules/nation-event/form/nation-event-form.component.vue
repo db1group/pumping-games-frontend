@@ -8,6 +8,8 @@
         <v-row>
           <v-col cols="12" lg="4">
             <v-text-field
+              :rules="[rules.required]"
+              validate-on="blur"
               v-model="nationEvent.name"
               placeholder="Nome do evento de nações"
               hint="Ex: Pumping games"
@@ -38,10 +40,14 @@ import { defineComponent, inject } from 'vue';
 import { NationEvent } from '../entities/nation-event';
 import { NationEventService } from '../services/nation-event.service';
 import { HTTP_CLIENT, HttpClient } from '../../../infra/http/http-client';
+import rulesService from '../../../infra/form-validation/rules.service';
 
 export default defineComponent({
   data() {
     return {
+      rules: {
+        required: rulesService.required,
+      },
       nationEvent: new NationEvent(),
       nationEventService: new NationEventService(
         inject(HTTP_CLIENT) as HttpClient
@@ -49,18 +55,21 @@ export default defineComponent({
     };
   },
   methods: {
-    save() {
-      if (this.nationEvent.id) {
+    async save() {
+      const { valid } = await (this.$refs.form as any).validate();
+
+      if (!valid) return;
+      if (this.isEditMode) {
         this.updateNationEvent();
         return;
       }
       this.create();
     },
     create() {
-      this.nationEvent.create();
+      this.nationEventService.createNationEvent(this.nationEvent);
     },
     updateNationEvent() {
-      this.nationEvent.update();
+      this.nationEventService.updateNationEvent(this.nationEvent);
     },
     async getNationEventById(nationEventId: string) {
       this.nationEvent = await this.nationEventService.getNationEventById(
@@ -78,6 +87,7 @@ export default defineComponent({
   },
 
   created() {
+    console.log(this);
     const id = this.$route.params.id as string;
     if (id) {
       this.getNationEventById(id);
