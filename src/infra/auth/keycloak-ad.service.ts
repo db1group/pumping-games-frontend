@@ -13,7 +13,7 @@ export class KeycloakAdService implements AuthAd {
     return new Promise((resolve, reject) => {
       this.keycloakInstance
         .init({
-          onLoad: 'check-sso',
+         
         })
         .then(async (authenticated) => {
           if (!authenticated) {
@@ -38,6 +38,7 @@ export class KeycloakAdService implements AuthAd {
           resolve(authenticated);
         })
         .catch((err) => {
+          console.log(err);
           reject(err);
         });
     });

@@ -3,9 +3,10 @@ import { App } from 'vue';
 import { authStore } from '../../store/auth-store';
 import { AuthStore } from '../../store/auth-store.interface';
 import { AUTH_AD, AuthAd } from '../auth/auth-ad';
-import { MemoryAdService } from '../auth/memory-ad.service';
+
 import { HTTP_CLIENT, HttpClient } from '../http/http-client';
 import { AxiosAdapter } from '../http/axios-adapter';
+import { KeycloakAdService } from '../auth/keycloak-ad.service';
 
 export class DependencyInjection {
   store: AuthStore;
@@ -14,7 +15,7 @@ export class DependencyInjection {
 
   constructor() {
     this.store = authStore();
-    this.authService = new MemoryAdService(this.store);
+    this.authService = new KeycloakAdService(this.store);
     this.httpClient = new AxiosAdapter();
   }
 
